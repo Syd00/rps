@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <div id="buttons">
+            <button value="Rock">Rock</button>
+            <button value="Paper">Paper</button>
+            <button value="Scissors">Scissors</button>
+        </div>
+        <div id="result">
+            <p id="playerScore">Player Score: </p>
+            <p id="computerScore">Computer Score: </p>
+        </div>
+    </div>
+
+    <script>
+        let humanScore = 0;
+        let computerScore = 0;
+
+        const scoreTab = document.querySelector('#result')
+
+        const WatsBeatWhat = {
+            Rock: "Scissors",
+            Paper: "Rock",
+            Scissors: "Paper"
+        }
+
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', playRound);
+        })
+        
+        let choices = Object.keys(WatsBeatWhat);
+
+        function getComputerChoice() {
+            let choiceValue = Math.floor(Math.random() * 3);
+            return choices[choiceValue];
+        }
+
+        function getHumanChoice(event) {
+            return event.target.value;
+        }
+
+        function playRound() {
+            let computerChoice = getComputerChoice();
+            let humanChoice = getHumanChoice(event);
+
+            console.log("Computer: " + computerChoice + ", Player: " + humanChoice )
+            if (humanChoice == computerChoice)
+                console.log("Tie");
+            else if (humanChoice == WatsBeatWhat[computerChoice]) {
+                computerScore ++;
+                console.log("You lost");
+            }
+            else {
+                humanScore ++;     
+                console.log("You win");
+            }
+            scoreTab.querySelector('#playerScore').innerHTML = "Player Score: " + humanScore;
+            scoreTab.querySelector('#computerScore').innerHTML = "Computer Score: " + computerScore;
+        }
+
+    </script>
+</body>
+</html>
