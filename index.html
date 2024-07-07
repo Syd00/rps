@@ -14,6 +14,8 @@
             <button value="Scissors">Scissors</button>
         </div>
         <div id="result">
+            <p id="playerChoice">Player choice: </p>
+            <p id="computerChoice">Computer choice: </p>
             <p id="playerScore">Player Score: </p>
             <p id="computerScore">Computer Score: </p>
         </div>
@@ -61,6 +63,8 @@
                 humanScore ++;     
                 console.log("You win");
             }
+            scoreTab.querySelector('#playerChoice').textContent = "Player Choice: " + humanChoice;
+            scoreTab.querySelector('#computerChoice').textContent = "Computer Choice: " + computerChoice;
             scoreTab.querySelector('#playerScore').innerHTML = "Player Score: " + humanScore;
             scoreTab.querySelector('#computerScore').innerHTML = "Computer Score: " + computerScore;
         }
